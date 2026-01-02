@@ -1,0 +1,16 @@
+Flask
+Flask-CORS
+python-dotenv
+supabase
+psycopg2-binary
+sqlalchemy
+PyJWT
+cryptography
+werkzeug
+requests
+pytz
+pandas
+numpy
+python-dotenv
+gunicorn
+click
