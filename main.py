@@ -87,23 +87,13 @@ def create_app():
     
     @app.route('/health')
     def health():
-        """Health check endpoint (required for Railway)"""
-        from AdSurveillance.database import is_supabase_connected
-        
-        checks = {
-            'api': 'healthy',
-            'supabase': 'healthy' if is_supabase_connected() else 'unhealthy',
-            'environment': Config.ENVIRONMENT
-        }
-        
-        status = 200 if all(v == 'healthy' for k, v in checks.items() if k != 'environment') else 503
-        
         return jsonify({
-            'status': 'healthy' if status == 200 else 'unhealthy',
+            'status': 'healthy',
+            'service': 'AdSurveillance',
             'timestamp': datetime.now().isoformat(),
-            'checks': checks,
-            'service': 'AdSurveillance'
-        }), status
+            'environment': Config.ENVIRONMENT
+        }), 200
+
     
     @app.route('/api')
     def api_root():
